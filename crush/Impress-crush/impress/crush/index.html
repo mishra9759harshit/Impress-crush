@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impress Crush❤️</title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Short+Stack&amp;family=Homemade+Apple&amp;display=swap'>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- A pen by Developer Harshit Mishra  -->
+<a href="https://mishraharshit.vercel.app" class="paper heart">Click</a>
+
+<div class="paper image">
+  <p>made with ❤️by <a href="https://mishraharshit.vercel.app">Harshit</a></p>
+  <img src="images/4.jpg" />
+</div>
+  
+<div class="paper image">
+  <p> and I fallen in</p>
+    <p>Love with You 😍 </p>
+   <img src="images/1.jpg" />
+</div>
+
+<div class="paper image">
+  <p>Teri baaton me me koi jadu jaise,
+  mn kare to bole aur mai sunta rahun.</p>
+  <img src="images/2.jpg" />
+</div>
+
+
+</div>
+<div class="paper image">
+  <p>How can be </p>
+   <p> someone so cute ❤️ </p>
+
+  <img src="images/3.jpg" />
+</div>
+
+
+
+<div class="paper red">
+<p class="p1"> and My Favorite</p>
+<p class="p2">Person 😍</p>
+</div>
+
+<div class="paper">
+<p class="p1">You are Cute </p>
+  <p class="p1">Amazing <span style="color: red !important;">❤️</span></p>
+</div>
+
+<div class="paper">
+<p class="p1">Drag the papers to move!</p>
+</div>
+
+<!-- partial -->
+<script>
+  
+  function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  }
+
+  // Dynamically load the appropriate script
+  function loadScript() {
+    const script = document.createElement('script');
+    
+    if (isTouchDevice()) {
+      script.src = './mobile.js'; // Load mobile.js for touch devices
+    } else {
+      script.src = './script.js'; // Load script.js for desktop devices
+    }
+    
+    
+    document.body.appendChild(script);
+  }
+
+  
+  loadScript();
+</script>
+
+</body>
+</html>
