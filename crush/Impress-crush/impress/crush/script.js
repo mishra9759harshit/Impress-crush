@@ -21,11 +21,9 @@ class Paper {
   zoomLevel = 1; 
 
   init(paper) {
-   
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
 
     if (isTouchDevice) {
-      
       paper.addEventListener('touchstart', (e) => this.onTouchStart(e, paper));
       paper.addEventListener('touchmove', (e) => this.onTouchMove(e, paper));
       paper.addEventListener('touchend', () => this.onTouchEnd());
@@ -33,7 +31,6 @@ class Paper {
       paper.addEventListener('gesturechange', (e) => this.onGestureChange(e, paper));
       paper.addEventListener('gestureend', () => this.onGestureEnd());
     } else {
-      
       document.addEventListener('mousemove', (e) => this.onMouseMove(e, paper));
       paper.addEventListener('mousedown', (e) => this.onMouseDown(e, paper));
       window.addEventListener('mouseup', () => this.onMouseUp());
@@ -41,7 +38,7 @@ class Paper {
   }
 
   onTouchStart(e, paper) {
-    if (this.holdingPaper) return; 
+    if (this.holdingPaper) return;
     this.holdingPaper = true;
     paper.style.zIndex = highestZ;
     highestZ += 1;
@@ -51,14 +48,13 @@ class Paper {
     this.prevMouseX = this.touchStartX;
     this.prevMouseY = this.touchStartY;
 
-    
-    paper.style.cursor = 'pointer';
-    e.preventDefault();  
+    // Change cursor to heart emoji when touching
+    paper.style.cursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'%3E%3Ctext x=\'4\' y=\'24\' font-size=\'24\' fill=\'red\'%3E❤️%3C/text%3E%3C/svg%3E") 16 16, auto';
+    e.preventDefault();
   }
 
-  
   onTouchMove(e, paper) {
-    e.preventDefault(); 
+    e.preventDefault();
     this.touchMoveX = e.touches[0].clientX;
     this.touchMoveY = e.touches[0].clientY;
 
@@ -92,7 +88,6 @@ class Paper {
     }
   }
 
-  // Handling touch end event
   onTouchEnd() {
     this.holdingPaper = false;
     this.rotating = false;
@@ -103,24 +98,21 @@ class Paper {
     paper.style.cursor = 'default';
   }
 
- 
   onGestureStart(e, paper) {
     e.preventDefault();
-    this.zoomLevel = e.scale; // Start tracking zoom scale
+    this.zoomLevel = e.scale;
   }
 
   onGestureChange(e, paper) {
     e.preventDefault();
-    this.zoomLevel = e.scale; // Update zoom level during gesture
+    this.zoomLevel = e.scale;
     paper.style.transform = `translateX(${this.currentPaperX}px) translateY(${this.currentPaperY}px) rotateZ(${this.rotation}deg) scale(${this.zoomLevel})`;
   }
 
   onGestureEnd() {
-
     this.zoomLevel = 1;
   }
 
- 
   onMouseDown(e, paper) {
     if (this.holdingPaper) return;
     this.holdingPaper = true;
@@ -128,8 +120,8 @@ class Paper {
     paper.style.zIndex = highestZ;
     highestZ += 1;
 
-    // Change cursor to hand (pointer) when interacting with the paper
-    paper.style.cursor = 'pointer';
+    // Change cursor to heart emoji when mouse is down
+    paper.style.cursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'%3E%3Ctext x=\'4\' y=\'24\' font-size=\'24\' fill=\'red\'%3E❤️%3C/text%3E%3C/svg%3E") 16 16, auto';
 
     if (e.button === 0) {
       this.mouseTouchX = this.mouseX;
@@ -142,7 +134,6 @@ class Paper {
     }
   }
 
-  // Handling mouse move event
   onMouseMove(e, paper) {
     if (!this.rotating) {
       this.mouseX = e.clientX;
@@ -177,15 +168,15 @@ class Paper {
     }
   }
 
-  // Handling mouse up event
   onMouseUp() {
     this.holdingPaper = false;
     this.rotating = false;
-
   
+    // Reset cursor to heart emoji when mouse up
     const paper = document.querySelector('.paper');
-    paper.style.cursor = 'default';
+    paper.style.cursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 48 48\'%3E%3Ccircle cx=\'24\' cy=\'24\' r=\'22\' fill=\'none\' stroke=\'#ff0000\' stroke-width=\'2\' /%3E%3Ctext x=\'10\' y=\'30\' font-size=\'24\' fill=\'#ff0000\'%3E❤️%3C/text%3E%3C/svg%3E") 24 24, auto';
   }
+  
 }
 
 const papers = Array.from(document.querySelectorAll('.paper'));
